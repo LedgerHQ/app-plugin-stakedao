@@ -3,12 +3,12 @@
 #include "eth_plugin_interface.h"
 #include <stdbool.h>
 
-#define PARAMETER_LENGTH 32
-#define SELECTOR_SIZE 4
+#define PARAMETER_LENGTH        32
+#define SELECTOR_SIZE           4
 #define MAX_STRATEGY_TICKER_LEN 16
-#define NUM_STAKEDAO_SELECTORS 26
+#define NUM_STAKEDAO_SELECTORS  26
 #define NUM_STAKEDAO_STRATEGIES 19
-#define NUM_CURVE_POOLS 4
+#define NUM_CURVE_POOLS         4
 
 #define PLUGIN_NAME "StakeDAO"
 

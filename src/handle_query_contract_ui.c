@@ -56,12 +56,7 @@ static void set_masterchef_name(ethQueryContractUI_t *msg, stakedao_parameters_t
 
     uint8_t *pid_number = context->pid;
     uint8_t pid_number_size = sizeof(context->pid);
-    amountToString(pid_number,
-                pid_number_size,
-                0,
-                "",
-                msg->msg,
-                msg->msgLength);
+    amountToString(pid_number, pid_number_size, 0, "", msg->msg, msg->msgLength);
 }
 
 static void set_want_name(ethQueryContractUI_t *msg, stakedao_parameters_t *context) {
@@ -98,12 +93,7 @@ static void set_nft_id(ethQueryContractUI_t *msg, stakedao_parameters_t *context
     strlcpy(msg->title, "Id", msg->titleLength);
     uint8_t *pid_number = context->pid;
     uint8_t pid_number_size = sizeof(context->pid);
-    amountToString(pid_number,
-                pid_number_size,
-                0,
-                "",
-                msg->msg,
-                msg->msgLength);
+    amountToString(pid_number, pid_number_size, 0, "", msg->msg, msg->msgLength);
 }
 
 static void set_nft_amount(ethQueryContractUI_t *msg) {
@@ -113,7 +103,7 @@ static void set_nft_amount(ethQueryContractUI_t *msg) {
 
 static void set_eth_amount(ethQueryContractUI_t *msg) {
     strlcpy(msg->title, "Amount", msg->titleLength);
-    
+
     // The number of ETH associated with this transaction is
     // located in `msg->pluginSharedRO->txContent->value.
     uint8_t *eth_amount = msg->pluginSharedRO->txContent->value.value;
@@ -122,22 +112,12 @@ static void set_eth_amount(ethQueryContractUI_t *msg) {
     // `amountToString` is a utility function that converts a `uin256_t` to
     //  a string.
     // `18` and `ETH ` refer to the decimals and the ticker.
-    amountToString(eth_amount,
-                eth_amount_size,
-                18,
-                "ETH",
-                msg->msg,
-                msg->msgLength);
+    amountToString(eth_amount, eth_amount_size, 18, "ETH", msg->msg, msg->msgLength);
 }
 
 static void set_reward_amount(ethQueryContractUI_t *msg, stakedao_parameters_t *context) {
     strlcpy(msg->title, "Amount", msg->titleLength);
-    amountToString(context->amount,
-                sizeof(context->amount),
-                18,
-                "xSDT",
-                msg->msg,
-                msg->msgLength);
+    amountToString(context->amount, sizeof(context->amount), 18, "xSDT", msg->msg, msg->msgLength);
 }
 
 static void set_amount(ethQueryContractUI_t *msg, stakedao_parameters_t *context) {
@@ -177,9 +157,7 @@ static void set_strategy_ui(ethQueryContractUI_t *msg, stakedao_parameters_t *co
 void handle_query_contract_ui_vaults(ethQueryContractUI_t *msg, stakedao_parameters_t *context) {
     // Copy the vault address prior to any process
     ethPluginSharedRO_t *pluginSharedRO = (ethPluginSharedRO_t *) msg->pluginSharedRO;
-    copy_amount(context->address,
-                   sizeof(context->address),
-                   pluginSharedRO->txContent->destination);
+    copy_amount(context->address, sizeof(context->address), pluginSharedRO->txContent->destination);
 
     // find information about vault
     uint8_t i;

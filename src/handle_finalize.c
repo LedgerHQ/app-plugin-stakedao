@@ -10,7 +10,7 @@
 // OPT_DEPOSIT_CRVLP -> strategy + token + amount (crvLP) + vault addr
 // OPT_WITHDRAW_UNDERLYING -> strategy + token + amount (sd share) + vault addr
 // OPT_WITHDRAW_CRVLP -> strategy + token + amount (sd share) + vault addr
-// PREMIUM_STAKE -> strategy + token + amount (SDT) + nft id 
+// PREMIUM_STAKE -> strategy + token + amount (SDT) + nft id
 // PREMIUM_WITHDRAW -> strategy + token + amount (SDT)
 // PREMIUM_GETREWARD -> strategy + token (WAVAX)
 // PREMIUM_EXIT -> strategy
@@ -24,12 +24,12 @@
 void handle_finalize(void *parameters) {
     ethPluginFinalize_t *msg = (ethPluginFinalize_t *) parameters;
     stakedao_parameters_t *context = (stakedao_parameters_t *) msg->pluginContext;
-    msg->numScreens = 1; // at least 1 for the premium exit
+    msg->numScreens = 1;  // at least 1 for the premium exit
 
     switch (context->selectorIndex) {
         case PREMIUM_EXIT:
         case PREMIUM_GETREWARD:
-            //msg->numScreens += 1;
+            // msg->numScreens += 1;
             break;
         default:
             msg->numScreens += 3;
