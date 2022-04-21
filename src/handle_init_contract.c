@@ -22,7 +22,9 @@ void handle_init_contract(void *parameters) {
         if (memcmp(PIC(STAKEDAO_SELECTORS[i]), msg->selector, SELECTOR_SIZE) == 0) {
             if (i == 17) {
                 ethPluginSharedRO_t *pluginSharedRO = (ethPluginSharedRO_t *) msg->pluginSharedRO;
-                if(memcmp(pluginSharedRO->txContent->destination, STAKEDAO_NFT_BOOST, ADDRESS_LENGTH) == 0) {
+                if (memcmp(pluginSharedRO->txContent->destination,
+                           STAKEDAO_NFT_BOOST,
+                           ADDRESS_LENGTH) == 0) {
                     context->selectorIndex = 20;
                     break;
                 }

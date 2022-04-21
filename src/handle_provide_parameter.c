@@ -34,7 +34,8 @@ static void handle_vault(ethPluginProvideParameter_t *msg, stakedao_parameters_t
     }
 }
 
-static void handle_opt_min_amount(ethPluginProvideParameter_t *msg, stakedao_parameters_t *context) {
+static void handle_opt_min_amount(ethPluginProvideParameter_t *msg,
+                                  stakedao_parameters_t *context) {
     switch (context->next_param) {
         case AMOUNT:
             copy_parameter(context->amount, msg->parameter, sizeof(context->amount));
@@ -57,7 +58,7 @@ static void handle_premium_stake(ethPluginProvideParameter_t *msg, stakedao_para
             context->next_param = NFT_ID;
             break;
         case NFT_ID:
-            copy_nft_id(context->pid, sizeof(context->pid), (uint8_t*)msg->parameter);
+            copy_nft_id(context->pid, sizeof(context->pid), (uint8_t *) msg->parameter);
             break;
         default:
             PRINTF("Param not supported\n");
@@ -69,7 +70,7 @@ static void handle_premium_stake(ethPluginProvideParameter_t *msg, stakedao_para
 static void handle_lp(ethPluginProvideParameter_t *msg, stakedao_parameters_t *context) {
     switch (context->next_param) {
         case PID:
-            copy_pid(context->pid, sizeof(context->pid), (uint8_t*)msg->parameter);
+            copy_pid(context->pid, sizeof(context->pid), (uint8_t *) msg->parameter);
             context->next_param = AMOUNT;
             break;
         case AMOUNT:
@@ -118,7 +119,7 @@ static void handle_angle_reward(ethPluginProvideParameter_t *msg, stakedao_param
 static void handle_nft_stake(ethPluginProvideParameter_t *msg, stakedao_parameters_t *context) {
     switch (context->next_param) {
         case NFT_ID:
-            copy_pid(context->pid, sizeof(context->pid), (uint8_t*)msg->parameter);
+            copy_pid(context->pid, sizeof(context->pid), (uint8_t *) msg->parameter);
             break;
         default:
             PRINTF("Param not supported\n");
@@ -138,7 +139,7 @@ static void handle_curve_add_l_2(ethPluginProvideParameter_t *msg, stakedao_para
             context->next_param = MIN_AMOUNT;
             break;
         case MIN_AMOUNT:
-            copy_pid(context->pid, sizeof(context->pid), (uint8_t*)msg->parameter);
+            copy_pid(context->pid, sizeof(context->pid), (uint8_t *) msg->parameter);
             break;
         default:
             PRINTF("Param not supported\n");
@@ -162,7 +163,7 @@ static void handle_curve_add_l_3(ethPluginProvideParameter_t *msg, stakedao_para
             context->next_param = MIN_AMOUNT;
             break;
         case MIN_AMOUNT:
-            copy_pid(context->pid, sizeof(context->pid), (uint8_t*)msg->parameter);
+            copy_pid(context->pid, sizeof(context->pid), (uint8_t *) msg->parameter);
             break;
         default:
             PRINTF("Param not supported\n");
@@ -171,7 +172,8 @@ static void handle_curve_add_l_3(ethPluginProvideParameter_t *msg, stakedao_para
     }
 }
 
-static void handle_curve_add_l_3_under(ethPluginProvideParameter_t *msg, stakedao_parameters_t *context) {
+static void handle_curve_add_l_3_under(ethPluginProvideParameter_t *msg,
+                                       stakedao_parameters_t *context) {
     switch (context->next_param) {
         case TOKEN_1:
             copy_parameter(context->amount, msg->parameter, sizeof(context->amount));
@@ -186,7 +188,7 @@ static void handle_curve_add_l_3_under(ethPluginProvideParameter_t *msg, stakeda
             context->next_param = MIN_AMOUNT;
             break;
         case MIN_AMOUNT:
-            copy_pid(context->pid, sizeof(context->pid), (uint8_t*)msg->parameter);
+            copy_pid(context->pid, sizeof(context->pid), (uint8_t *) msg->parameter);
             context->next_param = UNDER;
             break;
         case UNDER:
