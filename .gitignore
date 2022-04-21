@@ -1,4 +1,3 @@
-
 # Compilation of Ledger's app
 src/glyphs.c
 src/glyphs.h
@@ -6,6 +5,7 @@ bin/
 debug/
 dep/
 obj/
+tests/elfs/plugin_nano*.elf
 
 # Python
 *.pyc[cod]
