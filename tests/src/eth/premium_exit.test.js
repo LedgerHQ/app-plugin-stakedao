@@ -24,17 +24,17 @@ test('[Nano S] Premium Strategy exit', zemu("nanos", async (sim, eth) => {
   await tx;
 }, NETWORK));
 
-// test('[Nano X] Premium Strategy exit', zemu("nanox", async (sim, eth) => {
-//   const contract = new ethers.Contract(contractAddr, ['function exit()']);
-//   const {data} = await contract.populateTransaction.exit();
-//   let unsignedTx = genericTx;
-//   unsignedTx.to = contractAddr;
-//   unsignedTx.data = data;
+test('[Nano X] Premium Strategy exit', zemu("nanox", async (sim, eth) => {
+  const contract = new ethers.Contract(contractAddr, ['function exit()']);
+  const {data} = await contract.populateTransaction.exit();
+  let unsignedTx = genericTx;
+  unsignedTx.to = contractAddr;
+  unsignedTx.data = data;
 
-//   const serializedTx = ethers.utils.serializeTransaction(unsignedTx).slice(2);
-//   const tx = eth.signTransaction("44'/60'/0'/0", serializedTx);
+  const serializedTx = ethers.utils.serializeTransaction(unsignedTx).slice(2);
+  const tx = eth.signTransaction("44'/60'/0'/0", serializedTx);
 
-//   await waitForAppScreen(sim);
-//   await sim.navigateAndCompareSnapshots('.', 'nanox_premium_exit', [BASE_SCREENS_X, 0]);
-//   await tx;
-// }, NETWORK));
+  await waitForAppScreen(sim);
+  await sim.navigateAndCompareSnapshots('.', 'nanox_premium_exit', [BASE_SCREENS_X, 0]);
+  await tx;
+}, NETWORK));
