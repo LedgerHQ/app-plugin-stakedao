@@ -1,10 +1,5 @@
 #include "stakedao_plugin.h"
 
-static void copy_amount(uint8_t *dst, size_t dst_len, uint8_t *src) {
-    size_t len = MIN(dst_len, PARAMETER_LENGTH);
-    memcpy(dst, src, len);
-}
-
 static void copy_pid(uint8_t *dst, size_t dst_len, uint8_t *src) {
     size_t offset = PARAMETER_LENGTH - MAX_STRATEGY_TICKER_LEN;
     size_t len = MIN(dst_len, ADDRESS_LENGTH);
@@ -30,7 +25,7 @@ static void handle_no_params(ethPluginProvideParameter_t *msg, stakedao_paramete
 static void handle_vault(ethPluginProvideParameter_t *msg, stakedao_parameters_t *context) {
     switch (context->next_param) {
         case AMOUNT:
-            copy_amount(context->amount, sizeof(context->amount), (uint8_t*)msg->parameter);
+            copy_parameter(context->amount, msg->parameter, sizeof(context->amount));
             break;
         default:
             PRINTF("Param not supported\n");
@@ -42,11 +37,11 @@ static void handle_vault(ethPluginProvideParameter_t *msg, stakedao_parameters_t
 static void handle_opt_min_amount(ethPluginProvideParameter_t *msg, stakedao_parameters_t *context) {
     switch (context->next_param) {
         case AMOUNT:
-            copy_amount(context->amount, sizeof(context->amount), (uint8_t*)msg->parameter);
+            copy_parameter(context->amount, msg->parameter, sizeof(context->amount));
             context->next_param = MIN_AMOUNT;
             break;
         case MIN_AMOUNT:
-            copy_amount(context->min_amount, sizeof(context->min_amount), (uint8_t*)msg->parameter);
+            copy_parameter(context->min_amount, msg->parameter, sizeof(context->min_amount));
             break;
         default:
             PRINTF("Param not supported\n");
@@ -58,7 +53,7 @@ static void handle_opt_min_amount(ethPluginProvideParameter_t *msg, stakedao_par
 static void handle_premium_stake(ethPluginProvideParameter_t *msg, stakedao_parameters_t *context) {
     switch (context->next_param) {
         case AMOUNT:
-            copy_amount(context->amount, sizeof(context->amount), (uint8_t*)msg->parameter);
+            copy_parameter(context->amount, msg->parameter, sizeof(context->amount));
             context->next_param = NFT_ID;
             break;
         case NFT_ID:
@@ -78,7 +73,7 @@ static void handle_lp(ethPluginProvideParameter_t *msg, stakedao_parameters_t *c
             context->next_param = AMOUNT;
             break;
         case AMOUNT:
-            copy_amount(context->amount, sizeof(context->amount), (uint8_t*)msg->parameter);
+            copy_parameter(context->amount, msg->parameter, sizeof(context->amount));
             break;
         default:
             PRINTF("Param not supported\n");
@@ -96,7 +91,7 @@ static void handle_rewards_claim(ethPluginProvideParameter_t *msg, stakedao_para
             context->next_param = AMOUNT;
             break;
         case AMOUNT:
-            copy_amount(context->amount, sizeof(context->amount), (uint8_t*)msg->parameter);
+            copy_parameter(context->amount, msg->parameter, sizeof(context->amount));
             context->next_param = MERKLE_PROOF;
             break;
         case MERKLE_PROOF:
@@ -135,11 +130,11 @@ static void handle_nft_stake(ethPluginProvideParameter_t *msg, stakedao_paramete
 static void handle_curve_add_l_2(ethPluginProvideParameter_t *msg, stakedao_parameters_t *context) {
     switch (context->next_param) {
         case TOKEN_1:
-            copy_amount(context->amount, sizeof(context->amount), (uint8_t*)msg->parameter);
+            copy_parameter(context->amount, msg->parameter, sizeof(context->amount));
             context->next_param = TOKEN_2;
             break;
         case TOKEN_2:
-            copy_amount(context->min_amount, sizeof(context->min_amount), (uint8_t*)msg->parameter);
+            copy_parameter(context->min_amount, msg->parameter, sizeof(context->min_amount));
             context->next_param = MIN_AMOUNT;
             break;
         case MIN_AMOUNT:
@@ -155,15 +150,15 @@ static void handle_curve_add_l_2(ethPluginProvideParameter_t *msg, stakedao_para
 static void handle_curve_add_l_3(ethPluginProvideParameter_t *msg, stakedao_parameters_t *context) {
     switch (context->next_param) {
         case TOKEN_1:
-            copy_amount(context->amount, sizeof(context->amount), (uint8_t*)msg->parameter);
+            copy_parameter(context->amount, msg->parameter, sizeof(context->amount));
             context->next_param = TOKEN_2;
             break;
         case TOKEN_2:
-            copy_amount(context->amount, sizeof(context->amount), (uint8_t*)msg->parameter);
+            copy_parameter(context->amount, msg->parameter, sizeof(context->amount));
             context->next_param = TOKEN_3;
             break;
         case TOKEN_3:
-            copy_amount(context->min_amount, sizeof(context->min_amount), (uint8_t*)msg->parameter);
+            copy_parameter(context->min_amount, msg->parameter, sizeof(context->min_amount));
             context->next_param = MIN_AMOUNT;
             break;
         case MIN_AMOUNT:
@@ -179,15 +174,15 @@ static void handle_curve_add_l_3(ethPluginProvideParameter_t *msg, stakedao_para
 static void handle_curve_add_l_3_under(ethPluginProvideParameter_t *msg, stakedao_parameters_t *context) {
     switch (context->next_param) {
         case TOKEN_1:
-            copy_amount(context->amount, sizeof(context->amount), (uint8_t*)msg->parameter);
+            copy_parameter(context->amount, msg->parameter, sizeof(context->amount));
             context->next_param = TOKEN_2;
             break;
         case TOKEN_2:
-            copy_amount(context->amount, sizeof(context->amount), (uint8_t*)msg->parameter);
+            copy_parameter(context->amount, msg->parameter, sizeof(context->amount));
             context->next_param = TOKEN_3;
             break;
         case TOKEN_3:
-            copy_amount(context->min_amount, sizeof(context->min_amount), (uint8_t*)msg->parameter);
+            copy_parameter(context->min_amount, msg->parameter, sizeof(context->min_amount));
             context->next_param = MIN_AMOUNT;
             break;
         case MIN_AMOUNT:
