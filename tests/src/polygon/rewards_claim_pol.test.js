@@ -10,8 +10,8 @@ const MERKLE_INDEX = "11";
 const INDEX = "65";
 const AMOUNT_TO_CLAIM = '21507013325470224384'; // 21.5
 const MERKLE_PROOF = [];
-const BASE_SCREENS_S = (1 + 1 + 1 + 2 + 3 + 1 + 1 + 1); // STAKEDAO + STRATEGY + WANT + AMOUNT (2) +  STRATEGY ADDRESS (3) + NETWORK + GAS_FEES + ACCEPT
-const BASE_SCREENS_X = (1 + 1 + 1 + 1 + 1 + 1 + 1 + 1); // STAKEDAO + STRATEGY + WANT + AMOUNT (2) +  STRATEGY ADDRESS (3) + NETWORK + GAS_FEES + ACCEPT
+const BASE_SCREENS_S = (1 + 1 + 1 + 1 + 3 + 3 + 1 + 1); // STAKEDAO + REWARDS + RECEIVE + AMOUNT (3) +  STRATEGY (3) + NETWORK + GAS_FEES + ACCEPT
+const BASE_SCREENS_X = (1 + 1 + 1 + 1 + 1 + 1 + 1 + 1); // STAKEDAO + REWARDS + RECEIVE + AMOUNT +  STRATEGY + NETWORK + GAS_FEES + ACCEPT
 
 test('[Nano S] Claim xSDT reward', zemu("nanos", async (sim, eth) => {
   const contract = new ethers.Contract(contractAddr, ['function claim(uint256,uint256,uint256,bytes32[])']);
