@@ -200,8 +200,7 @@ static void handle_curve_add_l_3_under(ethPluginProvideParameter_t *msg,
     }
 }
 
-void handle_provide_parameter(void *parameters) {
-    ethPluginProvideParameter_t *msg = (ethPluginProvideParameter_t *) parameters;
+void handle_provide_parameter(ethPluginProvideParameter_t *msg) {
     stakedao_parameters_t *context = (stakedao_parameters_t *) msg->pluginContext;
     PRINTF("plugin provide parameter %d %.*H\n",
            msg->parameterOffset,
