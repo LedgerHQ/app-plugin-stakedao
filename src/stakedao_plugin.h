@@ -96,9 +96,3 @@ typedef struct stakedao_parameters_t {
 extern uint8_t const STAKEDAO_NFT_BOOST[ADDRESS_LENGTH];
 
 _Static_assert(sizeof(stakedao_parameters_t) <= 5 * 32, "Structure of parameters too big.");
-
-void handle_provide_parameter(void *parameters);
-void handle_query_contract_ui(void *parameters);
-void handle_init_contract(void *parameters);
-void handle_finalize(void *parameters);
-void handle_query_contract_id(void *parameters);

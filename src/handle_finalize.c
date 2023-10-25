@@ -21,8 +21,7 @@
 // PALACE_STAKE -> strategy + token + amount (xSDT) + addr
 // PALACE_WITHDRAW -> strategy + token + amount (xSDT) + addr
 
-void handle_finalize(void *parameters) {
-    ethPluginFinalize_t *msg = (ethPluginFinalize_t *) parameters;
+void handle_finalize(ethPluginFinalize_t *msg) {
     stakedao_parameters_t *context = (stakedao_parameters_t *) msg->pluginContext;
     msg->numScreens = 1;  // at least 1 for the premium exit
 
