@@ -170,10 +170,7 @@ static bool set_strategy_ui(ethQueryContractUI_t *msg, stakedao_parameters_t *co
     msg->msg[0] = '0';
     msg->msg[1] = 'x';
     uint64_t chainid = 0;
-    return getEthAddressStringFromBinary(context->address,
-                                         msg->msg + 2,
-                                         msg->pluginSharedRW->sha3,
-                                         chainid);
+    return getEthAddressStringFromBinary(context->address, msg->msg + 2, chainid);
 }
 
 bool handle_query_contract_ui_vaults(ethQueryContractUI_t *msg, stakedao_parameters_t *context) {
