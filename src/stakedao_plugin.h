@@ -95,4 +95,6 @@ typedef struct stakedao_parameters_t {
 
 extern uint8_t const STAKEDAO_NFT_BOOST[ADDRESS_LENGTH];
 
-_Static_assert(sizeof(stakedao_parameters_t) <= 5 * 32, "Structure of parameters too big.");
+// Check that the plugin context structure will fit in the ethereum allocated memory.
+// Do not remove this check.
+ASSERT_SIZEOF_PLUGIN_CONTEXT(stakedao_parameters_t);

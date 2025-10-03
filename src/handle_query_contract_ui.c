@@ -20,7 +20,7 @@ bool copy_amount_with_ticker(const uint8_t *amount,
     return true;
 }
 
-static void copy_amount(uint8_t *dst, size_t dst_len, uint8_t *src) {
+static void copy_amount(uint8_t *dst, size_t dst_len, const uint8_t *src) {
     size_t len = MIN(dst_len, PARAMETER_LENGTH);
     memcpy(dst, src, len);
 }
@@ -122,9 +122,9 @@ static bool set_eth_amount(ethQueryContractUI_t *msg) {
     strlcpy(msg->title, "Amount", msg->titleLength);
 
     // The number of ETH associated with this transaction is
-    // located in `msg->pluginSharedRO->txContent->value.
-    uint8_t *eth_amount = msg->pluginSharedRO->txContent->value.value;
-    uint8_t eth_amount_size = msg->pluginSharedRO->txContent->value.length;
+    // located in `msg->txContent->value.
+    const uint8_t *eth_amount = msg->txContent->value.value;
+    uint8_t eth_amount_size = msg->txContent->value.length;
 
     // `amountToString` is a utility function that converts a `uin256_t` to
     //  a string.
@@ -177,8 +177,7 @@ bool handle_query_contract_ui_vaults(ethQueryContractUI_t *msg, stakedao_paramet
     bool ret = false;
 
     // Copy the vault address prior to any process
-    ethPluginSharedRO_t *pluginSharedRO = (ethPluginSharedRO_t *) msg->pluginSharedRO;
-    copy_amount(context->address, sizeof(context->address), pluginSharedRO->txContent->destination);
+    copy_amount(context->address, sizeof(context->address), msg->txContent->destination);
 
     // find information about vault
     uint8_t i;

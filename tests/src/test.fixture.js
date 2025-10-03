@@ -20,13 +20,10 @@ const sim_options_generic = {
 
 const Resolve = require('path').resolve;
 
-const NANOS_ETH_PATH = Resolve('elfs/ethereum_nanos.elf');
 const NANOX_ETH_PATH = Resolve('elfs/ethereum_nanox.elf');
 
-const NANOS_PLUGIN_PATH = Resolve('elfs/plugin_nanos.elf');
 const NANOX_PLUGIN_PATH = Resolve('elfs/plugin_nanox.elf');
 
-const NANOS_PLUGIN = { "StakeDAO": NANOS_PLUGIN_PATH };
 const NANOX_PLUGIN = { "StakeDAO": NANOX_PLUGIN_PATH };
 
 //const stakedaoJSON = generate_plugin_config();
@@ -84,8 +81,6 @@ function zemu(device, func, testNetwork="ethereum") {
         let sim_options = sim_options_generic;
 
         if (device === "nanos") {
-            eth_path = NANOS_ETH_PATH;
-            plugin = NANOS_PLUGIN;
             sim_options.model = "nanos";
         } else {
             eth_path = NANOX_ETH_PATH;
