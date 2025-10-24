@@ -1,9 +1,7 @@
 #include "stakedao_plugin.h"
 
 // Called once to init.
-void handle_init_contract(void *parameters) {
-    ethPluginInitContract_t *msg = (ethPluginInitContract_t *) parameters;
-
+void handle_init_contract(ethPluginInitContract_t *msg) {
     if (msg->interfaceVersion != ETH_PLUGIN_INTERFACE_VERSION_LATEST) {
         msg->result = ETH_PLUGIN_RESULT_UNAVAILABLE;
         return;
@@ -21,8 +19,7 @@ void handle_init_contract(void *parameters) {
     for (i = 0; i < NUM_STAKEDAO_SELECTORS; i++) {
         if (memcmp(PIC(STAKEDAO_SELECTORS[i]), msg->selector, SELECTOR_SIZE) == 0) {
             if (i == 17) {
-                ethPluginSharedRO_t *pluginSharedRO = (ethPluginSharedRO_t *) msg->pluginSharedRO;
-                if(memcmp(pluginSharedRO->txContent->destination, STAKEDAO_NFT_BOOST, ADDRESS_LENGTH) == 0) {
+                if (memcmp(msg->txContent->destination, STAKEDAO_NFT_BOOST, ADDRESS_LENGTH) == 0) {
                     context->selectorIndex = 20;
                     break;
                 }

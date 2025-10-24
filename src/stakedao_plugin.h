@@ -3,12 +3,12 @@
 #include "eth_plugin_interface.h"
 #include <stdbool.h>
 
-#define PARAMETER_LENGTH 32
-#define SELECTOR_SIZE 4
+#define PARAMETER_LENGTH        32
+#define SELECTOR_SIZE           4
 #define MAX_STRATEGY_TICKER_LEN 16
-#define NUM_STAKEDAO_SELECTORS 26
+#define NUM_STAKEDAO_SELECTORS  26
 #define NUM_STAKEDAO_STRATEGIES 19
-#define NUM_CURVE_POOLS 4
+#define NUM_CURVE_POOLS         4
 
 #define PLUGIN_NAME "StakeDAO"
 
@@ -95,10 +95,6 @@ typedef struct stakedao_parameters_t {
 
 extern uint8_t const STAKEDAO_NFT_BOOST[ADDRESS_LENGTH];
 
-_Static_assert(sizeof(stakedao_parameters_t) <= 5 * 32, "Structure of parameters too big.");
-
-void handle_provide_parameter(void *parameters);
-void handle_query_contract_ui(void *parameters);
-void handle_init_contract(void *parameters);
-void handle_finalize(void *parameters);
-void handle_query_contract_id(void *parameters);
+// Check that the plugin context structure will fit in the ethereum allocated memory.
+// Do not remove this check.
+ASSERT_SIZEOF_PLUGIN_CONTEXT(stakedao_parameters_t);
